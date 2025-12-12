@@ -35,8 +35,8 @@ The project simulates an IoT-SIEM pipeline with an ggregation database (Parsed-I
   MINIO_ROOT_USER=minioadmin MINIO_ROOT_PASSWORD=minioadmin \
   minio server /home/preet/minio-data --console-address ":9001"
   ```
-- Kibana/Elasticsearch or Wazuh set up and connected to the parsed index
-- CICIoTDIAD2024 dataset downloaded and placed in a suitable directory (update paths in scripts as needed)
+- Kibana/Elasticsearch set up and connected to the parsed index
+- CICIoTDIAD2024 dataset downloaded and placed in a suitable directory
 - MinIO client (`mc`) installed in WSL:  
   ```bash
   mc alias set local http://localhost:9000 minioadmin minioadmin

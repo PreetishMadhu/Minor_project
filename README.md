@@ -25,9 +25,10 @@ The project simulates an IoT-SIEM pipeline with an ggregation database (Parsed-I
 | **Visualization** | Kibana (Elastic Stack)  | Dashboards to view detection and poisoning impact     |
 | **Scripting**     | Python / Bash                    | Log processing and MinIO interactions                 |
 
-## Usage
 ## Architecture
 ![Block Diagram](Block_diagram.jpg)
+
+## Usage
 
 ### Prerequisites
 

@@ -1,0 +1,46 @@
+input {
+  s3 {
+    bucket => "parsed-indexed"
+    access_key_id => "minioadmin"
+    secret_access_key => "minioadmin"
+    endpoint => "http://localhost:9000"  # <-- Change this to the S3 API port
+    region => "us-east-1"
+
+    # MinIO compatibility settings (keep these)
+    additional_settings => {
+      "force_path_style" => true
+      "use_dualstack_endpoint" => false
+      "use_accelerate_endpoint" => false
+      "follow_redirects" => false
+    }
+
+    prefix => ""
+    sincedb_path => "/tmp/logstash_sincedb"
+    temporary_directory => "/tmp/logstash-s3"  # Optional, for downloading large files
+    codec => "json"  # Or "json_lines", "plain", etc., based on your files
+    watch_for_new_files => true
+    interval => 60  # Poll every 60 seconds (adjust as needed)
+  }
+}
+
+filter {
+  # Optional: Add parsing if your data needs it (e.g., for timestamps or fields)
+  # Example for JSON data:
+  json {
+    source => "message"
+  }
+  # Or for grok parsing if it's logs:
+  # grok {
+  #   match => { "message" => "%{COMBINEDAPACHELOG}" }
+  # }
+}
+
+output {
+  elasticsearch {
+    hosts => ["http://localhost:9200"]  # Your ES host
+    index => "minio-data-%{+YYYY.MM.dd}"  # Index name (dynamic by date; customize as needed)
+    user => "elastic"  # If ES has security enabled; otherwise omit
+    password => "your_es_password"  # If enabled; otherwise omit
+  }
+  stdout { codec => rubydebug }  # Optional: For debugging output in console
+}

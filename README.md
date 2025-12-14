@@ -11,7 +11,7 @@ The project simulates an IoT-SIEM pipeline with an ggregation database (Parsed-I
 | File/Folder                  | Description                                                                 |
 |------------------------------|-----------------------------------------------------------------------------|
 | `cic_to_logs.py`             | Converting CICIOTDIAD2024 Dataset into Json Logs                            |
-| `poisoned_script.py`         | Generates poisoned logs and injects them into the pipeline                  |
+| `poisoned_script.py`         | Generates poisoned logs and saves the poisoned+benign logs in benign.json   |
 | `minio-to-es.conf`           | configuration for Logstash                                                  |
 | `Block_diagram.png`          | System architecture diagram                                                 |
 | `README.md`                  | This file                                                                   |
@@ -63,6 +63,9 @@ This flow demonstrates normal operation with high detection rates.
 2. Establish connection from WSL to MinIO and Logstash. Also sends Logs to Logstash.    
 via:
    ```bash
+   # Setting-up the configuration file for logstash using "minio-to-es.conf" file
+   
+   # running the connection 
    ./bin/logstash -f minio-to-es.conf
    ```
 3. View dashboard in Kibana — attacks are Displayed.
@@ -74,6 +77,7 @@ This flow injects poisoned logs and shows reduced detection.
 4. Using evasion techniques, generate poisoned logs mixed with benign traffic (treated as 8th category).
    using the script Poisoned_script.py
    ```bash
+   # run the program using
    python3 Poisoned_script.py 
    ```
 5. Inject poisoned logs into Parsed-Indexed Store.

@@ -33,6 +33,8 @@ The project simulates an IoT-SIEM pipeline with an ggregation database (Parsed-I
 
 ### Prerequisites
 
+- First we convert the CSVs from CICIOTDIAD2024 Dataset to JSON logs using "cic_to_logs.py" script
+
 - Windows Subsystem for Linux (WSL) installed
 - MinIO server running:  
   ```bash
@@ -45,6 +47,11 @@ The project simulates an IoT-SIEM pipeline with an ggregation database (Parsed-I
   ```bash
   mc alias set local http://localhost:9000 minioadmin minioadmin
   ```
+- We check the bucket in MinIO using:
+  ```bash
+  mc ls local
+  ```
+
 ### Part 1: Clean Detection Pipeline
 
 This flow demonstrates normal operation with high detection rates.

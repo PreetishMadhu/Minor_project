@@ -6,6 +6,9 @@ This repository contains the implementation and scripts for the project *"Inside
 
 The project simulates an IoT-SIEM pipeline with an ggregation database (Parsed-Indexed Store) using MinIO. It first demonstrates clean detection of 7 attack categories, then shows how insider poisoning at the aggregation layer reduces detection effectiveness in Kibana.
 
+## Architecture
+![Project Architecture](archi.jpg)
+
 ## 📁 Project Structure
 
 | File/Folder                  | Description                                                                 |
@@ -26,7 +29,7 @@ The project simulates an IoT-SIEM pipeline with an ggregation database (Parsed-I
 | **Visualization** | Kibana (Elastic Stack)  | Dashboards to view detection and poisoning impact     |
 | **Scripting**     | Python / Bash                    | Log processing and MinIO interactions                 |
 
-## Architecture
+### Block Diagram
 ![Block Diagram](Block_diagram.jpg)
 
 ## Usage
@@ -69,6 +72,13 @@ via:
    ./bin/logstash -f minio-to-es.conf
    ```
 3. View dashboard in Kibana — attacks are Displayed.
+
+Example Detection of Spoofing Attack Category
+![Malicious](malicious.jpg)
+
+Graph & Pie chart showing the 7 Attack Categories detected in Visualization Section of Kibana Dash board
+![clean](clean.jpg)
+![Pie](clean pie.jpg)
 
 ### Part 2: Insider Log Poisoning Attack
 
